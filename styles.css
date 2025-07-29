@@ -1,0 +1,444 @@
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: auto;
+        /*
+        writing-mode: horizontal-tb;
+        overflow: visible;
+        direction: rtl;
+        unicode-bidi: bidi-override; */
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 0;
+        margin-left: 0;
+        /* Ensures no space is reserved for the sidebar */
+        transition: none;
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+        position: absolute;
+        /* Remove it from the document flow */
+        width: 0;
+        /* Ensure it takes no space */
+        height: 0;
+    }
+
+    @page {
+        size: 8.5in 11in;
+        margin: 0.5in;
+    }
+
+    .hebrew {
+        font-size: 16px;
+    }
+
+    .hebrew strong {
+        font-size: calc(16px * 1.14);
+    }
+
+    .hebrew-large {
+        font-size: calc(16px * 1.75);
+    }
+
+    .transliteration {
+        font-size: 14px;
+    }
+
+    .english {
+        font-size: 11px;
+    }
+}
+
+body {
+    font-family: 'Besley';
+    direction: rtl;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 15%;
+    /* Width of the sidebar */
+    background-color: #f0f0f0;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    /* Transition for sliding in and out */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+    transform: translateX(-250px);
+    /* Slide sidebar out of view */
+    box-shadow: none;
+}
+
+.hamburger-menu {
+    background: none;
+    padding: 10px;
+    position: fixed;
+    /* Ensure it's not affected by sidebar movement */
+    top: 10px;
+    left: 10px;
+    z-index: 1101;
+    /* Above the sidebar */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hamburger-menu:hover {
+    background-color: #dcdcdc;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 15%;
+    /* Matches sidebar width */
+    transition: margin-left 0.3s ease;
+    /* Ensures smooth transition */
+}
+
+.main-content.sidebar-collapsed {
+    margin-left: 0;
+    /* Adjust main content margin when sidebar is collapsed */
+}
+
+.font-controls {
+    direction: ltr;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+}
+
+.button-container {
+    direction: ltr;
+}
+
+.font-control-set {
+    font-size: 12px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.font-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.font-size-input {
+    width: 50%;
+    text-align: center;
+}
+
+.reset-btn {
+    display: block;
+    margin: 10px auto;
+    /* Centers the button horizontally */
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.reset-btn:hover {
+    background-color: #dcdcdc;
+}
+
+.font-btn {
+    display: block;
+    margin: 10px auto;
+    /* Centers the button horizontally */
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.font-btn:hover {
+    background-color: #dcdcdc;
+}
+
+.large-section {
+    margin: 5px;
+}
+
+.large-section-header-text {
+    font-family: 'Oregon LDO';
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    font-variant: all-small-caps;
+    direction: ltr;
+    letter-spacing: 0.025em;
+    margin: 5px;
+}
+
+.section-header {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    direction: ltr;
+    margin: 10px;
+}
+
+.header-line {
+    margin: -2.5px;
+    width: 50%;
+    height: 1px;
+    background-color: black;
+}
+
+.blessing-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    line-height: 15px;
+}
+
+.header-square {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background-color: black;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.header-text h1 {
+    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.bold-title {
+    font-weight: bold;
+    color: black;
+}
+
+.description {
+    font-weight: normal;
+    color: gray;
+}
+
+.description-normal {
+    font-weight: normal;
+    color: black;
+}
+
+.verse {
+    margin: 0px;
+    padding: 0px;
+}
+
+.verse-central {
+    justify-content: center;
+    display: flex;
+}
+
+.chapter {
+    margin: 0px;
+    padding: 0px;
+}
+
+.verse-table {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows content to wrap when needed */
+    gap: 10px;
+    /* Adds spacing between items */
+    align-items: flex-start;
+    /* Aligns items to the top */
+    line-height: 1.75;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.phrase-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    width: min-content;
+    page-break-inside: avoid;
+}
+
+.bracha-section {
+    display: inline-flex;
+    /* Behaves like an inline element */
+    flex-direction: row;
+    /* Items flow horizontally within the section */
+    align-items: center;
+    /* Align items vertically centered */
+    page-break-inside: avoid;
+    gap: 10px;
+    /* Adds space between phrase groups inside the section */
+}
+
+.hebrew {
+    font-family: 'Hadassah Friedlaender Light';
+    font-size: calc(12px * 1.5);
+    direction: rtl;
+    line-height: 1.2;
+    /* Adjust for better vertical spacing */
+    text-align: center;
+    white-space: nowrap;
+    /* Keeps Hebrew on a single line */
+    /* Allows the Hebrew to dictate the width of the phrase group */
+}
+
+.hebrew strong {
+    font-size: calc(12px * 1.5 * 1.14);
+}
+
+.hebrew-large {
+    font-size: calc(12px * 1.5 * 1.75);
+    line-height: 1;
+    /* Prevents extra spacing */
+}
+
+.transliteration,
+.english {
+    font-family: 'Besley';
+    text-align: center;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+}
+
+.transliteration {
+    font-size: calc(8px * 1.5);
+    direction: ltr;
+    letter-spacing: -0.02em;
+}
+
+.english {
+    font-size: calc(6px * 1.5);
+    font-style: italic;
+    direction: ltr;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+.instruction {
+    width: auto;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    font-family: 'Oregon LDO Demibold';
+    font-size: 14px;
+    text-align: center;
+    font-variant: all-small-caps;
+    direction: ltr;
+    letter-spacing: 0.025em;
+}
+
+.instruction i {
+    letter-spacing: 0.035em;
+}
+
+.instruction-transliteration {
+    font-family: 'Besley';
+    font-size: 10px;
+    direction: ltr;
+    letter-spacing: -0.02em;
+    font-variant: normal;
+}
+
+#header-image {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    /* Adjust size as necessary */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.insert {
+    align-content: center;
+    background-color: rgba(0, 0, 0, 0.03);
+    border: #000;
+    padding: 5px;
+    width: auto;
+}
+
+.insert-div {
+    margin-bottom: 10px;
+}
+
+.arrow,
+.arrows,
+.arrows-strong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    /* Adds space around the arrows */
+}
+
+.arrow::before,
+.arrows::before,
+.arrows-strong::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 600;
+    /* Or 900 for strong arrows */
+    content: "\f104";
+    /* Adjust content for different arrows */
+    color: #939292;
+    /* Change color if needed */
+    display: inline-block;
+    padding: 0 5px;
+    /* Adds space between the arrow and adjacent text */
+}
+
+.arrows::before {
+    content: "\f100";
+    /* Unicode for `fa-angle-double-left` */
+}
+
+.arrows-strong::before {
+    font-weight: 900;
+    /* Bold version */
+    color: #000000;
+    /* Strong arrow color */
+    content: "\f100";
+}
+
+.footnotes {
+    margin-top: 20px;
+    font-size: 0.85em;
+    border-top: 1px solid #000;
+    padding-top: 10px;
+    direction: ltr;
+    page-break-inside: avoid;
+}
