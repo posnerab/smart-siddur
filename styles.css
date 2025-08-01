@@ -1,3 +1,59 @@
+@font-face {
+    font-family: 'Hadassah Friedlaender Light';
+    src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hadassah Friedlaender Medium';
+    src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hadassah Friedlaender Heavy';
+    src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Heavy.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hadassah Friedlaender Black';
+    src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Besley';
+    src: url('Fonts/Besley/Besley-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Besley';
+    src: url('Fonts/Besley/Besley-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Oregon LDO';
+    src: url('Fonts/Oregon-LDO-DemiBold/Oregon LDO DemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oregon LDO Demibold';
+    src: url('Fonts/Oregon-LDO-DemiBold/Oregon LDO DemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @media print {
     body {
         margin: 0;

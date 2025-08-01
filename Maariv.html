@@ -4,54 +4,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabbalas Shabbos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Maariv</title>
+
     <link rel="icon" type="image/png" href="crown.png">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- macron ō -->
+    <style>
+        @font-face {
+            font-family: 'Hadassah Friedlaender Light';
+            src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Light.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Hadassah Friedlaender Medium';
+            src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Medium.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Hadassah Friedlaender Heavy';
+            src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Heavy.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Hadassah Friedlaender Black';
+            src: url('Fonts/Hadassah Friedlaender/Hadassah Friedlaender Black.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Besley';
+            src: url('Fonts/Besley/Besley-VariableFont_wght.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Besley';
+            src: url('Fonts/Besley/Besley-Italic-VariableFont_wght.ttf') format('truetype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Oregon LDO';
+            src: url('Fonts/Oregon-LDO-DemiBold/Oregon LDO DemiBold.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Oregon LDO Demibold';
+            src: url('Fonts/Oregon-LDO-DemiBold/Oregon LDO DemiBold.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: auto;
+                background-color: white;
+                display: block;
+            }
+
+            .main-content {
+                width: 6in;
+                min-height: 10in;
+                max-width: 6in;
+                padding: 0.5in;
+                margin: 0 auto;
+                box-shadow: none;
+                background-color: white;
+                box-sizing: border-box;
+            }
+
+
+
+            @page {
+                size: 8.5in 11in;
+                margin: 0.5in;
+            }
+
+            .hebrew {
+                font-size: 16px;
+            }
+
+            .hebrew strong {
+                font-size: calc(16px * 1.14);
+            }
+
+            .hebrew-large {
+                font-size: calc(16px * 1.75);
+            }
+
+            .transliteration {
+                font-size: 14px;
+            }
+
+            .english {
+                font-size: 11px;
+            }
+        }
+
+        body {
+            font-family: 'Besley';
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #f5f5f5;
+        }
+
+        .main-content {
+            width: 6in;
+            min-height: 10in;
+            max-width: 6in;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 0.5in;
+            box-sizing: border-box;
+        }
+
+        .large-section {
+            margin: 5px;
+        }
+
+        .large-section-header-text {
+            font-family: 'Oregon LDO';
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            font-variant: all-small-caps;
+            direction: ltr;
+            letter-spacing: 0.025em;
+            margin: 5px;
+        }
+
+        .section-header {
+            text-align: right;
+            margin-bottom: 5px;
+        }
+
+        .header-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            direction: ltr;
+            margin: 10px;
+        }
+
+        .header-line {
+            margin: -2.5px;
+            width: 50%;
+            height: 1px;
+            background-color: black;
+        }
+
+        .blessing-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            line-height: 15px;
+        }
+
+        .header-square {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: black;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .header-text h1 {
+            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .header-text h2 {
+            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .bold-title {
+            font-weight: bold;
+            color: black;
+        }
+
+        .description {
+            font-weight: normal;
+            color: gray;
+        }
+
+        .description-normal {
+            font-weight: normal;
+            color: black;
+        }
+
+        .verse {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .verse-central {
+            justify-content: center;
+            display: flex;
+        }
+
+        .chapter {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .verse-table {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start;
+            line-height: 1.75;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .phrase-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+            width: min-content;
+            page-break-inside: avoid;
+        }
+
+        .bracha-section {
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            page-break-inside: avoid;
+            gap: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Hadassah Friedlaender Light';
+            font-size: calc(12px * 1.5);
+            direction: rtl;
+            line-height: 1.2;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .hebrew strong {
+            font-size: calc(12px * 1.5 * 1.14);
+        }
+
+        .hebrew-large {
+            font-size: calc(12px * 1.5 * 1.75);
+            line-height: 1;
+        }
+
+        .transliteration,
+        .english {
+            font-family: 'Besley';
+            text-align: center;
+            line-height: 1.2;
+            overflow-wrap: break-word;
+        }
+
+        .transliteration {
+            font-size: calc(8px * 1.5);
+            direction: ltr;
+            letter-spacing: -0.02em;
+        }
+
+        .english {
+            font-size: calc(6px * 1.5);
+            font-style: italic;
+            direction: ltr;
+        }
+
+        .small-caps {
+            font-variant: small-caps;
+        }
+
+        .instruction {
+            width: auto;
+            margin-left: 12.5%;
+            margin-right: 12.5%;
+            font-family: 'Oregon LDO Demibold';
+            font-size: 14px;
+            text-align: center;
+            font-variant: all-small-caps;
+            direction: ltr;
+            letter-spacing: 0.025em;
+        }
+
+        .instruction i {
+            letter-spacing: 0.035em;
+        }
+
+        .instruction-transliteration {
+            font-family: 'Besley';
+            font-size: 10px;
+            direction: ltr;
+            letter-spacing: -0.02em;
+            font-variant: normal;
+        }
+
+        #header-image {
+            display: block;
+            margin: 0 auto;
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .insert {
+            align-content: center;
+            background-color: rgba(0, 0, 0, 0.03);
+            border: #000;
+            padding: 5px;
+            width: auto;
+        }
+
+        .insert-div {
+            margin-bottom: 10px;
+        }
+
+        .arrow,
+        .arrows,
+        .arrows-strong {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+        }
+
+        .arrow::before,
+        .arrows::before,
+        .arrows-strong::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 600;
+            content: "\f104";
+            color: #939292;
+            display: inline-block;
+            padding: 0 5px;
+        }
+
+        .arrows::before {
+            content: "\f100";
+        }
+
+        .arrows-strong::before {
+            font-weight: 900;
+            color: #000000;
+            content: "\f100";
+        }
+
+        .footnotes {
+            margin-top: 20px;
+            font-size: 0.85em;
+            border-top: 1px solid #000;
+            padding-top: 10px;
+            direction: ltr;
+            page-break-inside: avoid;
+        }
+    </style>
 </head>
 
 <body>
-    <button id="sidebarToggle" class="hamburger-menu" title="Toggle Sidebar">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <div class="sidebar">
-        <div class="font-controls">
-            <br>
-            <div class="font-control-set">
-                <strong>Hebrew</strong>
-                <div class="font-control">
-                    <button class="font-btn decrease" data-class="hebrew" data-increment="-1" title="Decrease Hebrew Font Size"><i class="fas fa-minus"></i></button>
-                    <label for="hebrew-font-size" class="sr-only">Hebrew Font Size</label>
-                    <input type="number" id="hebrew-font-size" class="font-size-input" data-class="hebrew" value="21" aria-label="Hebrew Font Size">
-                    <button class="font-btn increase" data-class="hebrew" data-increment="1" title="Increase Hebrew Font Size"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-            <div class="font-control-set">
-                <strong>Transliteration</strong>
-                <div class="font-control">
-                    <button class="font-btn decrease" data-class="transliteration" data-increment="-1" title="Decrease Transliteration Font Size"><i class="fas fa-minus"></i></button>
-                    <label for="transliteration-font-size" class="sr-only">Transliteration Font Size</label>
-                    <input type="number" id="transliteration-font-size" class="font-size-input" data-class="transliteration" value="15" aria-label="Transliteration Font Size">
-                    <button class="font-btn increase" data-class="transliteration" data-increment="1" title="Increase Transliteration Font Size"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-            <div class="font-control-set">
-                <strong>English</strong>
-                <div class="font-control">
-                    <button class="font-btn decrease" data-class="english" data-increment="-1" title="Decrease English Font Size"><i class="fas fa-minus"></i></button>
-                    <label for="english-font-size" class="sr-only">English Font Size</label>
-                    <input type="number" id="english-font-size" class="font-size-input" data-class="english" value="9" aria-label="English Font Size">
-                    <button class="font-btn increase" data-class="english" data-increment="1" title="Increase English Font Size"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-            <button id="resetFonts" class="reset-btn" title="Reset Font Sizes">
-                <i class="fas fa-undo"></i> Reset
-            </button>
-        </div>
-    </div>
+
     
     
     <div class="main-content">
@@ -4190,17 +4524,24 @@
             <!-- Shabbos Maariv Service -->
             <div class="large-section">
                 <div class="header-wrapper">
+                    <div class="large-section-header-text">
+                        <span>Shabbos Maariv</span>
+                    </div>
                     <div class="header-line"></div>
                     <div class="blessing-header">
                         <div class="header-text">
                             <h1>
                                 <span class="header-square"></span>
-                                <span class="bold-title">Shabbos Maariv:</span>
-                                <span class="description">&nbsp;Evening Service</span>
+                                <div class="description-normal">
+                                    <span>Evening Service</span>
+                                </div>
                             </h1>
                         </div>
                     </div>
                     <div class="header-line"></div>
+                </div>
+                <div class="instruction">
+                    <span>The evening service begins with the call to prayer, followed by the blessings before and after the Shema, and concludes with the Amidah prayer.</span>
                 </div>
                 
                 <!-- Barchu -->
@@ -4290,6 +4631,9 @@
                     </div>
                     
                     <!-- First Blessing: Ma'ariv Aravim -->
+                    <div class="instruction">
+                        <span>First Blessing: Ma'ariv Aravim (Who Brings Evening)</span>
+                    </div>
                     <div class="verse">
                         <div class="verse-table">
                             <div class="phrase-group">
@@ -4344,8 +4688,289 @@
                             </div>
                         </div>
                     </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּחָכְמָה</div>
+                                <div class="transliteration">b'chochmah</div>
+                                <div class="english">with wisdom</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">פּוֹתֵחַ</div>
+                                <div class="transliteration">posei'ach</div>
+                                <div class="english">opening</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שְׁעָרִים</div>
+                                <div class="transliteration">sh'arim</div>
+                                <div class="english">gates</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבִתְבוּנָה</div>
+                                <div class="transliteration">uvisvunah</div>
+                                <div class="english">and with understanding</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְשַׁנֶּה</div>
+                                <div class="transliteration">m'shaneh</div>
+                                <div class="english">changing</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עִתִּים</div>
+                                <div class="transliteration">itim</div>
+                                <div class="english">times</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּמַחֲלִיף</div>
+                                <div class="transliteration">umachalif</div>
+                                <div class="english">and alternating</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">the</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַזְּמַנִּים</div>
+                                <div class="transliteration">haz'manim</div>
+                                <div class="english">seasons</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וּמְסַדֵּר</div>
+                                <div class="transliteration">um'sadeir</div>
+                                <div class="english">and arranging</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">the</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַכּוֹכָבִים</div>
+                                <div class="transliteration">hakochavim</div>
+                                <div class="english">stars</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּמִשְׁמְרוֹתֵיהֶם</div>
+                                <div class="transliteration">b'mishm'roseihem</div>
+                                <div class="english">in their watches</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּרָקִיעַ</div>
+                                <div class="transliteration">baraqia</div>
+                                <div class="english">in the firmament</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כִּרְצוֹנוֹ</div>
+                                <div class="transliteration">kirzono</div>
+                                <div class="english">according to His will</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">בּוֹרֵא</div>
+                                <div class="transliteration">borei</div>
+                                <div class="english">Creator</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יוֹם</div>
+                                <div class="transliteration">yom</div>
+                                <div class="english">of day</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וָלָיְלָה</div>
+                                <div class="transliteration">valailah</div>
+                                <div class="english">and night</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">גּוֹלֵל</div>
+                                <div class="transliteration">goleil</div>
+                                <div class="english">rolling</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אוֹר</div>
+                                <div class="transliteration">or</div>
+                                <div class="english">light</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מִפְּנֵי</div>
+                                <div class="transliteration">mipnei</div>
+                                <div class="english">from before</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חֹשֶׁךְ</div>
+                                <div class="transliteration">choshech</div>
+                                <div class="english">darkness</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְחֹשֶׁךְ</div>
+                                <div class="transliteration">v'choshech</div>
+                                <div class="english">and darkness</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מִפְּנֵי</div>
+                                <div class="transliteration">mipnei</div>
+                                <div class="english">from before</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אוֹר</div>
+                                <div class="transliteration">or</div>
+                                <div class="english">light</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וּמַעֲבִיר</div>
+                                <div class="transliteration">uma'avir</div>
+                                <div class="english">and passing</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יוֹם</div>
+                                <div class="transliteration">yom</div>
+                                <div class="english">day</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּמֵבִיא</div>
+                                <div class="transliteration">umeivi</div>
+                                <div class="english">and bringing</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָיְלָה</div>
+                                <div class="transliteration">lailah</div>
+                                <div class="english">night</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּמַפְרִיד</div>
+                                <div class="transliteration">umafrid</div>
+                                <div class="english">and separating</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בֵּין</div>
+                                <div class="transliteration">bein</div>
+                                <div class="english">between</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יוֹם</div>
+                                <div class="transliteration">yom</div>
+                                <div class="english">day</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבֵין</div>
+                                <div class="transliteration">uvein</div>
+                                <div class="english">and between</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָיְלָה</div>
+                                <div class="transliteration">lailah</div>
+                                <div class="english">night</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">צְבָאוֹת</div>
+                                <div class="transliteration">tzva'os</div>
+                                <div class="english">of hosts</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שְׁמוֹ</div>
+                                <div class="transliteration">sh'mo</div>
+                                <div class="english">is His Name</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">אֵל</div>
+                                <div class="transliteration">Eil</div>
+                                <div class="english">G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חַי</div>
+                                <div class="transliteration">chai</div>
+                                <div class="english">living</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְקַיָּם</div>
+                                <div class="transliteration">v'kayam</div>
+                                <div class="english">and enduring</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תָּמִיד</div>
+                                <div class="transliteration">tamid</div>
+                                <div class="english">always</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִמְלוֹךְ</div>
+                                <div class="transliteration">yimloch</div>
+                                <div class="english">will reign</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עָלֵינוּ</div>
+                                <div class="transliteration">aleinu</div>
+                                <div class="english">over us</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְעוֹלָם</div>
+                                <div class="transliteration">l'olam</div>
+                                <div class="english">forever</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וָעֶד</div>
+                                <div class="transliteration">va'ed</div>
+                                <div class="english">and ever</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּרוּךְ</div>
+                                <div class="transliteration">Baruch</div>
+                                <div class="english">Blessed</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַתָּה</div>
+                                <div class="transliteration">atah</div>
+                                <div class="english">are You</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַמַּעֲרִיב</div>
+                                <div class="transliteration">hama'ariv</div>
+                                <div class="english">Who brings evening</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עֲרָבִים</div>
+                                <div class="transliteration">aravim</div>
+                                <div class="english">twilights</div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- Second Blessing: Ahavas Olam -->
+                    <div class="instruction">
+                        <span>Second Blessing: Ahavas Olam (With Everlasting Love)</span>
+                    </div>
                     <div class="verse">
                         <div class="verse-table">
                             <div class="phrase-group">
@@ -4400,6 +5025,256 @@
                             </div>
                         </div>
                     </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּאַהֲבָה</div>
+                                <div class="transliteration">b'ahavah</div>
+                                <div class="english">with love</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">רַבָּה</div>
+                                <div class="transliteration">rabbah</div>
+                                <div class="english">great</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲהַבְתָּנוּ</div>
+                                <div class="transliteration">ahavtanu</div>
+                                <div class="english">You have loved us</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵינוּ</div>
+                                <div class="transliteration">Eloheinu</div>
+                                <div class="english">our G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חֶמְלָה</div>
+                                <div class="transliteration">chemlah</div>
+                                <div class="english">compassion</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">גְּדוֹלָה</div>
+                                <div class="transliteration">g'dolah</div>
+                                <div class="english">great</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וִיתֵרָה</div>
+                                <div class="transliteration">viteirah</div>
+                                <div class="english">and abundant</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חָמַלְתָּ</div>
+                                <div class="transliteration">chamalta</div>
+                                <div class="english">You have had mercy</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עָלֵינוּ</div>
+                                <div class="transliteration">aleinu</div>
+                                <div class="english">upon us</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">אָבִינוּ</div>
+                                <div class="transliteration">avinu</div>
+                                <div class="english">Our Father</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מַלְכֵּנוּ</div>
+                                <div class="transliteration">malkeinu</div>
+                                <div class="english">our King</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בַּעֲבוּר</div>
+                                <div class="transliteration">ba'avur</div>
+                                <div class="english">for the sake</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲבוֹתֵינוּ</div>
+                                <div class="transliteration">avoseinu</div>
+                                <div class="english">of our fathers</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שֶׁבָּטְחוּ</div>
+                                <div class="transliteration">shebat'chu</div>
+                                <div class="english">who trusted</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּךְ</div>
+                                <div class="transliteration">bach</div>
+                                <div class="english">in You</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וַתְּלַמְּדֵם</div>
+                                <div class="transliteration">vat'lamdeim</div>
+                                <div class="english">and You taught them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חֻקֵּי</div>
+                                <div class="transliteration">chukei</div>
+                                <div class="english">the statutes</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חַיִּים</div>
+                                <div class="transliteration">chayim</div>
+                                <div class="english">of life</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">כֵּן</div>
+                                <div class="transliteration">kein</div>
+                                <div class="english">So too</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תְּחָנֵּנוּ</div>
+                                <div class="transliteration">t'choneinu</div>
+                                <div class="english">be gracious to us</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְתַלְמִידֵנוּ</div>
+                                <div class="transliteration">v'talmideinu</div>
+                                <div class="english">and teach us</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חֻקֵּי</div>
+                                <div class="transliteration">chukei</div>
+                                <div class="english">the statutes</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">חַיִּים</div>
+                                <div class="transliteration">chayim</div>
+                                <div class="english">of life</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְתַטִּעֵנוּ</div>
+                                <div class="transliteration">v'tati'einu</div>
+                                <div class="english">and plant in us</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּלִבֵּנוּ</div>
+                                <div class="transliteration">b'libeinu</div>
+                                <div class="english">in our hearts</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַהֲבָה</div>
+                                <div class="transliteration">ahavah</div>
+                                <div class="english">love</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְיִרְאָה</div>
+                                <div class="transliteration">v'yirah</div>
+                                <div class="english">and fear</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְלַעֲשׂוֹת</div>
+                                <div class="transliteration">v'la'asos</div>
+                                <div class="english">and to do</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">רְצוֹנְךָ</div>
+                                <div class="transliteration">r'tzoncha</div>
+                                <div class="english">Your will</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּלֵבָב</div>
+                                <div class="transliteration">b'levav</div>
+                                <div class="english">with heart</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שָׁלֵם</div>
+                                <div class="transliteration">shaleim</div>
+                                <div class="english">whole</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְמַעַן</div>
+                                <div class="transliteration">l'ma'an</div>
+                                <div class="english">so that</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לֹא</div>
+                                <div class="transliteration">lo</div>
+                                <div class="english">we not</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נֵבוֹשׁ</div>
+                                <div class="transliteration">neivosh</div>
+                                <div class="english">be ashamed</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְלֹא</div>
+                                <div class="transliteration">v'lo</div>
+                                <div class="english">and not</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נִכָּלֵם</div>
+                                <div class="transliteration">nikaleim</div>
+                                <div class="english">be humiliated</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">לְעוֹלָם</div>
+                                <div class="transliteration">l'olam</div>
+                                <div class="english">forever</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וָעֶד</div>
+                                <div class="transliteration">va'ed</div>
+                                <div class="english">and ever</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּרוּךְ</div>
+                                <div class="transliteration">Baruch</div>
+                                <div class="english">Blessed</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַתָּה</div>
+                                <div class="transliteration">atah</div>
+                                <div class="english">are You</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָאוֹהֵב</div>
+                                <div class="transliteration">haoheiv</div>
+                                <div class="english">Who loves</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">His</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַמּוֹ</div>
+                                <div class="transliteration">amo</div>
+                                <div class="english">people</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִשְׂרָאֵל</div>
+                                <div class="transliteration">Yisroel</div>
+                                <div class="english">Israel</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Shema -->
@@ -4411,11 +5286,14 @@
                                 <h2>
                                     <span class="header-square"></span>
                                     <span class="bold-title">Shema:</span>
-                                    <span class="description">&nbsp;Hear, O Israel</span>
+                                    <span class="description">&nbsp;Hear, O Israel (Deuteronomy 6:4-9)</span>
                                 </h2>
                             </div>
                         </div>
                         <div class="header-line"></div>
+                    </div>
+                    <div class="instruction">
+                        <span>First Paragraph: Shema Yisrael</span>
                     </div>
                     <div class="verse">
                         <div class="verse-table">
@@ -4448,6 +5326,1671 @@
                                 <div class="hebrew">אֶחָד</div>
                                 <div class="transliteration">echad</div>
                                 <div class="english">is One</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאָהַבְתָּ</div>
+                                <div class="transliteration">v'ahavta</div>
+                                <div class="english">And you shall love</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">the</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֶיךָ</div>
+                                <div class="transliteration">Elohecha</div>
+                                <div class="english">your G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּכָל</div>
+                                <div class="transliteration">b'chol</div>
+                                <div class="english">with all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבָבְךָ</div>
+                                <div class="transliteration">l'vavcha</div>
+                                <div class="english">your heart</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְכָל</div>
+                                <div class="transliteration">uv'chol</div>
+                                <div class="english">and with all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נַפְשְׁךָ</div>
+                                <div class="transliteration">nafsh'cha</div>
+                                <div class="english">your soul</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְכָל</div>
+                                <div class="transliteration">uv'chol</div>
+                                <div class="english">and with all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְאֹדֶךָ</div>
+                                <div class="transliteration">m'odecha</div>
+                                <div class="english">your might</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהָיוּ</div>
+                                <div class="transliteration">v'hayu</div>
+                                <div class="english">And they shall be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַדְּבָרִים</div>
+                                <div class="transliteration">had'varim</div>
+                                <div class="english">these words</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָאֵלֶּה</div>
+                                <div class="transliteration">ha'eileh</div>
+                                <div class="english">these</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲשֶׁר</div>
+                                <div class="transliteration">asher</div>
+                                <div class="english">which</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אָנֹכִי</div>
+                                <div class="transliteration">anochi</div>
+                                <div class="english">I</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְצַוְּךָ</div>
+                                <div class="transliteration">m'tzav'cha</div>
+                                <div class="english">command you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַיּוֹם</div>
+                                <div class="transliteration">hayom</div>
+                                <div class="english">today</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבָבֶךָ</div>
+                                <div class="transliteration">l'vavecha</div>
+                                <div class="english">your heart</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְשִׁנַּנְתָּם</div>
+                                <div class="transliteration">v'shinantam</div>
+                                <div class="english">And you shall teach them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבָנֶיךָ</div>
+                                <div class="transliteration">l'vanecha</div>
+                                <div class="english">to your children</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְדִבַּרְתָּ</div>
+                                <div class="transliteration">v'dibarta</div>
+                                <div class="english">and you shall speak</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּם</div>
+                                <div class="transliteration">bam</div>
+                                <div class="english">of them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּשִׁבְתְּךָ</div>
+                                <div class="transliteration">b'shivt'cha</div>
+                                <div class="english">when you sit</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּבֵיתֶךָ</div>
+                                <div class="transliteration">b'veisecha</div>
+                                <div class="english">in your house</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְלֶכְתְּךָ</div>
+                                <div class="transliteration">uv'lecht'cha</div>
+                                <div class="english">and when you walk</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בַדֶּרֶךְ</div>
+                                <div class="transliteration">baderech</div>
+                                <div class="english">on the way</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְשָׁכְבְּךָ</div>
+                                <div class="transliteration">uv'shachb'cha</div>
+                                <div class="english">and when you lie down</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְקוּמֶךָ</div>
+                                <div class="transliteration">uv'kumecha</div>
+                                <div class="english">and when you rise up</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וּקְשַׁרְתָּם</div>
+                                <div class="transliteration">uk'shartam</div>
+                                <div class="english">And you shall bind them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְאוֹת</div>
+                                <div class="transliteration">l'os</div>
+                                <div class="english">for a sign</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יָדֶךָ</div>
+                                <div class="transliteration">yadecha</div>
+                                <div class="english">your hand</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהָיוּ</div>
+                                <div class="transliteration">v'hayu</div>
+                                <div class="english">and they shall be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְטוֹטָפֹת</div>
+                                <div class="transliteration">l'totafos</div>
+                                <div class="english">for frontlets</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בֵּין</div>
+                                <div class="transliteration">bein</div>
+                                <div class="english">between</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עֵינֶיךָ</div>
+                                <div class="transliteration">einecha</div>
+                                <div class="english">your eyes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וּכְתַבְתָּם</div>
+                                <div class="transliteration">uch'savtam</div>
+                                <div class="english">And you shall write them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְזוּזוֹת</div>
+                                <div class="transliteration">m'zuzos</div>
+                                <div class="english">the doorposts</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בֵּיתֶךָ</div>
+                                <div class="transliteration">beisecha</div>
+                                <div class="english">of your house</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבִשְׁעָרֶיךָ</div>
+                                <div class="transliteration">uvish'arecha</div>
+                                <div class="english">and on your gates</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction">
+                        <span>Second Paragraph: V'hayah Im Shamoa (Deuteronomy 11:13-21)</span>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew"><strong>וְהָיָה</strong></div>
+                                <div class="transliteration"><strong>V'hayah</strong></div>
+                                <div class="english"><strong>And it shall be</strong></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אִם</div>
+                                <div class="transliteration">im</div>
+                                <div class="english">if</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שָׁמֹעַ</div>
+                                <div class="transliteration">shamoa</div>
+                                <div class="english">you will listen</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תִּשְׁמְעוּ</div>
+                                <div class="transliteration">tishm'u</div>
+                                <div class="english">you will listen</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶל</div>
+                                <div class="transliteration">el</div>
+                                <div class="english">to</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מִצְוֺתַי</div>
+                                <div class="transliteration">mitzvosai</div>
+                                <div class="english">My commandments</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲשֶׁר</div>
+                                <div class="transliteration">asher</div>
+                                <div class="english">which</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אָנֹכִי</div>
+                                <div class="transliteration">anochi</div>
+                                <div class="english">I</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְצַוֶּה</div>
+                                <div class="transliteration">m'tzaveh</div>
+                                <div class="english">command</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶתְכֶם</div>
+                                <div class="transliteration">eschem</div>
+                                <div class="english">you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַיּוֹם</div>
+                                <div class="transliteration">hayom</div>
+                                <div class="english">today</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">לְאַהֲבָה</div>
+                                <div class="transliteration">l'ahavah</div>
+                                <div class="english">to love</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">the</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵיכֶם</div>
+                                <div class="transliteration">Eloheichem</div>
+                                <div class="english">your G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּלְעָבְדוֹ</div>
+                                <div class="transliteration">ul'ovdo</div>
+                                <div class="english">and to serve Him</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּכָל</div>
+                                <div class="transliteration">b'chol</div>
+                                <div class="english">with all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבַבְכֶם</div>
+                                <div class="transliteration">l'vavchem</div>
+                                <div class="english">your heart</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְכָל</div>
+                                <div class="transliteration">uv'chol</div>
+                                <div class="english">and with all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נַפְשְׁכֶם</div>
+                                <div class="transliteration">nafsh'chem</div>
+                                <div class="english">your soul</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנָתַתִּי</div>
+                                <div class="transliteration">v'nasati</div>
+                                <div class="english">And I will give</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְטַר</div>
+                                <div class="transliteration">m'tar</div>
+                                <div class="english">rain</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַרְצְכֶם</div>
+                                <div class="transliteration">artz'chem</div>
+                                <div class="english">of your land</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּעִתּוֹ</div>
+                                <div class="transliteration">b'ito</div>
+                                <div class="english">in its time</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יוֹרֶה</div>
+                                <div class="transliteration">yoreh</div>
+                                <div class="english">early</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּמַלְקוֹשׁ</div>
+                                <div class="transliteration">umalqosh</div>
+                                <div class="english">and late</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאָסַפְתָּ</div>
+                                <div class="transliteration">v'asafta</div>
+                                <div class="english">and you shall gather</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">דְּגָנֶךָ</div>
+                                <div class="transliteration">d'ganecha</div>
+                                <div class="english">your grain</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְתִירֹשְׁךָ</div>
+                                <div class="transliteration">v'tirosh'cha</div>
+                                <div class="english">and your wine</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְיִצְהָרֶךָ</div>
+                                <div class="transliteration">v'yitzharecha</div>
+                                <div class="english">and your oil</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנָתַתִּי</div>
+                                <div class="transliteration">v'nasati</div>
+                                <div class="english">And I will give</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עֵשֶׂב</div>
+                                <div class="transliteration">eisev</div>
+                                <div class="english">grass</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּשָׂדְךָ</div>
+                                <div class="transliteration">b'sadcha</div>
+                                <div class="english">in your field</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לִבְהֶמְתֶּךָ</div>
+                                <div class="transliteration">livhemtecha</div>
+                                <div class="english">for your cattle</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאָכַלְתָּ</div>
+                                <div class="transliteration">v'achalta</div>
+                                <div class="english">and you shall eat</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְשָׂבָעְתָּ</div>
+                                <div class="transliteration">v'sava'ta</div>
+                                <div class="english">and be satisfied</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">הִשָּׁמְרוּ</div>
+                                <div class="transliteration">hishamru</div>
+                                <div class="english">Beware</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָכֶם</div>
+                                <div class="transliteration">lachem</div>
+                                <div class="english">for yourselves</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">פֶּן</div>
+                                <div class="transliteration">pen</div>
+                                <div class="english">lest</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִפְתֶּה</div>
+                                <div class="transliteration">yifteh</div>
+                                <div class="english">deceive</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבַבְכֶם</div>
+                                <div class="transliteration">l'vavchem</div>
+                                <div class="english">your heart</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְסַרְתֶּם</div>
+                                <div class="transliteration">v'sartem</div>
+                                <div class="english">and you turn away</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וַעֲבַדְתֶּם</div>
+                                <div class="transliteration">va'avadtem</div>
+                                <div class="english">and serve</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקִים</div>
+                                <div class="transliteration">elohim</div>
+                                <div class="english">gods</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲחֵרִים</div>
+                                <div class="transliteration">acheirim</div>
+                                <div class="english">other</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהִשְׁתַּחֲוִיתֶם</div>
+                                <div class="transliteration">v'hishtachavitem</div>
+                                <div class="english">and bow down</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָהֶם</div>
+                                <div class="transliteration">lahem</div>
+                                <div class="english">to them</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְחָרָה</div>
+                                <div class="transliteration">v'charah</div>
+                                <div class="english">And the anger</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַף</div>
+                                <div class="transliteration">af</div>
+                                <div class="english">of</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּכֶם</div>
+                                <div class="transliteration">bachem</div>
+                                <div class="english">against you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְסָגַר</div>
+                                <div class="transliteration">v'sagar</div>
+                                <div class="english">and He will shut</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">the</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַשָּׁמַיִם</div>
+                                <div class="transliteration">hashamayim</div>
+                                <div class="english">heavens</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְלֹא</div>
+                                <div class="transliteration">v'lo</div>
+                                <div class="english">and there will be no</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִהְיֶה</div>
+                                <div class="transliteration">yihyeh</div>
+                                <div class="english">there will be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מָטָר</div>
+                                <div class="transliteration">matar</div>
+                                <div class="english">rain</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהָאֲדָמָה</div>
+                                <div class="transliteration">v'ha'adamah</div>
+                                <div class="english">and the ground</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לֹא</div>
+                                <div class="transliteration">lo</div>
+                                <div class="english">will not</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תִתֵּן</div>
+                                <div class="transliteration">titein</div>
+                                <div class="english">give</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">its</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יְבוּלָהּ</div>
+                                <div class="transliteration">y'vulah</div>
+                                <div class="english">produce</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וַאֲבַדְתֶּם</div>
+                                <div class="transliteration">va'avadtem</div>
+                                <div class="english">and you will perish</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְהֵרָה</div>
+                                <div class="transliteration">m'heirah</div>
+                                <div class="english">quickly</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מֵעַל</div>
+                                <div class="transliteration">me'al</div>
+                                <div class="english">from upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָאָרֶץ</div>
+                                <div class="transliteration">ha'aretz</div>
+                                <div class="english">the land</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַטּוֹבָה</div>
+                                <div class="transliteration">hatovah</div>
+                                <div class="english">the good</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲשֶׁר</div>
+                                <div class="transliteration">asher</div>
+                                <div class="english">which</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נֹתֵן</div>
+                                <div class="transliteration">nosein</div>
+                                <div class="english">gives</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָכֶם</div>
+                                <div class="transliteration">lachem</div>
+                                <div class="english">to you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְשַׂמְתֶּם</div>
+                                <div class="transliteration">v'samtem</div>
+                                <div class="english">and you shall place</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">these</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">דְּבָרַי</div>
+                                <div class="transliteration">d'varai</div>
+                                <div class="english">My words</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֵלֶּה</div>
+                                <div class="transliteration">eileh</div>
+                                <div class="english">these</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבַבְכֶם</div>
+                                <div class="transliteration">l'vavchem</div>
+                                <div class="english">your heart</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְעַל</div>
+                                <div class="transliteration">v'al</div>
+                                <div class="english">and upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נַפְשְׁכֶם</div>
+                                <div class="transliteration">nafsh'chem</div>
+                                <div class="english">your soul</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וּקְשַׁרְתֶּם</div>
+                                <div class="transliteration">uk'shartem</div>
+                                <div class="english">And you shall bind them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֹתָם</div>
+                                <div class="transliteration">osam</div>
+                                <div class="english">them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְאוֹת</div>
+                                <div class="transliteration">l'os</div>
+                                <div class="english">for a sign</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יֶדְכֶם</div>
+                                <div class="transliteration">yedchem</div>
+                                <div class="english">your hand</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהָיוּ</div>
+                                <div class="transliteration">v'hayu</div>
+                                <div class="english">and they shall be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְטוֹטָפֹת</div>
+                                <div class="transliteration">l'totafos</div>
+                                <div class="english">for frontlets</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בֵּין</div>
+                                <div class="transliteration">bein</div>
+                                <div class="english">between</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עֵינֵיכֶם</div>
+                                <div class="transliteration">eineichem</div>
+                                <div class="english">your eyes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְלִמַּדְתֶּם</div>
+                                <div class="transliteration">v'limadtem</div>
+                                <div class="english">And you shall teach them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֹתָם</div>
+                                <div class="transliteration">osam</div>
+                                <div class="english">them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">to</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּנֵיכֶם</div>
+                                <div class="transliteration">b'neichem</div>
+                                <div class="english">your children</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְדַבֵּר</div>
+                                <div class="transliteration">l'dabeir</div>
+                                <div class="english">to speak</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּם</div>
+                                <div class="transliteration">bam</div>
+                                <div class="english">of them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּשִׁבְתְּךָ</div>
+                                <div class="transliteration">b'shivt'cha</div>
+                                <div class="english">when you sit</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּבֵיתֶךָ</div>
+                                <div class="transliteration">b'veisecha</div>
+                                <div class="english">in your house</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְלֶכְתְּךָ</div>
+                                <div class="transliteration">uv'lecht'cha</div>
+                                <div class="english">and when you walk</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בַדֶּרֶךְ</div>
+                                <div class="transliteration">baderech</div>
+                                <div class="english">on the way</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְשָׁכְבְּךָ</div>
+                                <div class="transliteration">uv'shachb'cha</div>
+                                <div class="english">and when you lie down</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבְקוּמֶךָ</div>
+                                <div class="transliteration">uv'kumecha</div>
+                                <div class="english">and when you rise up</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּכְתַבְתָּם</div>
+                                <div class="transliteration">uch'savtam</div>
+                                <div class="english">And you shall write them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מְזוּזוֹת</div>
+                                <div class="transliteration">m'zuzos</div>
+                                <div class="english">the doorposts</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בֵּיתֶךָ</div>
+                                <div class="transliteration">beisecha</div>
+                                <div class="english">of your house</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּבִשְׁעָרֶיךָ</div>
+                                <div class="transliteration">uvish'arecha</div>
+                                <div class="english">and on your gates</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">לְמַעַן</div>
+                                <div class="transliteration">l'ma'an</div>
+                                <div class="english">So that</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִרְבּוּ</div>
+                                <div class="transliteration">yirbu</div>
+                                <div class="english">may be multiplied</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יְמֵיכֶם</div>
+                                <div class="transliteration">yemeichem</div>
+                                <div class="english">your days</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וִימֵי</div>
+                                <div class="transliteration">vimei</div>
+                                <div class="english">and the days</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּנֵיכֶם</div>
+                                <div class="transliteration">b'neichem</div>
+                                <div class="english">of your children</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָאֲדָמָה</div>
+                                <div class="transliteration">ha'adamah</div>
+                                <div class="english">the ground</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲשֶׁר</div>
+                                <div class="transliteration">asher</div>
+                                <div class="english">which</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נִשְׁבַּע</div>
+                                <div class="transliteration">nishba</div>
+                                <div class="english">swore</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">לַאֲבֹתֵיכֶם</div>
+                                <div class="transliteration">la'avoseichem</div>
+                                <div class="english">to your fathers</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָתֵת</div>
+                                <div class="transliteration">lateit</div>
+                                <div class="english">to give</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָהֶם</div>
+                                <div class="transliteration">lahem</div>
+                                <div class="english">to them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כִּימֵי</div>
+                                <div class="transliteration">kimei</div>
+                                <div class="english">as the days</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַשָּׁמַיִם</div>
+                                <div class="transliteration">hashamayim</div>
+                                <div class="english">of the heavens</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָאָרֶץ</div>
+                                <div class="transliteration">ha'aretz</div>
+                                <div class="english">the earth</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction">
+                        <span>Third Paragraph: Vayomer Hashem el Moshe (Numbers 15:37-41)</span>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew"><strong>וַיֹּאמֶר</strong></div>
+                                <div class="transliteration"><strong>Vayomer</strong></div>
+                                <div class="english"><strong>And Hashem said</strong></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶל</div>
+                                <div class="transliteration">el</div>
+                                <div class="english">to</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מֹשֶׁה</div>
+                                <div class="transliteration">Moshe</div>
+                                <div class="english">Moses</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לֵּאמֹר</div>
+                                <div class="transliteration">laymor</div>
+                                <div class="english">saying</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">דַּבֵּר</div>
+                                <div class="transliteration">dabeir</div>
+                                <div class="english">Speak</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶל</div>
+                                <div class="transliteration">el</div>
+                                <div class="english">to</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בְּנֵי</div>
+                                <div class="transliteration">b'nei</div>
+                                <div class="english">the children</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִשְׂרָאֵל</div>
+                                <div class="transliteration">Yisroel</div>
+                                <div class="english">of Israel</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאָמַרְתָּ</div>
+                                <div class="transliteration">v'amarta</div>
+                                <div class="english">and you shall say</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲלֵהֶם</div>
+                                <div class="transliteration">aleihem</div>
+                                <div class="english">to them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְעָשׂוּ</div>
+                                <div class="transliteration">v'asu</div>
+                                <div class="english">and they shall make</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָהֶם</div>
+                                <div class="transliteration">lahem</div>
+                                <div class="english">for themselves</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">צִיצִית</div>
+                                <div class="transliteration">tzitzis</div>
+                                <div class="english">fringes</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כַּנְפֵי</div>
+                                <div class="transliteration">kanfei</div>
+                                <div class="english">the corners</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בִגְדֵיהֶם</div>
+                                <div class="transliteration">vigdeihem</div>
+                                <div class="english">of their garments</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">לְדֹרֹתָם</div>
+                                <div class="transliteration">l'dorosam</div>
+                                <div class="english">for their generations</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנָתְנוּ</div>
+                                <div class="transliteration">v'nasnu</div>
+                                <div class="english">and they shall place</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עַל</div>
+                                <div class="transliteration">al</div>
+                                <div class="english">upon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">צִיצִית</div>
+                                <div class="transliteration">tzitzis</div>
+                                <div class="english">the fringe</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַכָּנָף</div>
+                                <div class="transliteration">hakanaf</div>
+                                <div class="english">of the corner</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">פְּתִיל</div>
+                                <div class="transliteration">petil</div>
+                                <div class="english">a thread</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תְּכֵלֶת</div>
+                                <div class="transliteration">t'cheiles</div>
+                                <div class="english">of blue</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהָיָה</div>
+                                <div class="transliteration">v'hayah</div>
+                                <div class="english">And it shall be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָכֶם</div>
+                                <div class="transliteration">lachem</div>
+                                <div class="english">for you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְצִיצִית</div>
+                                <div class="transliteration">l'tzitzis</div>
+                                <div class="english">for a fringe</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּרְאִיתֶם</div>
+                                <div class="transliteration">ur'isem</div>
+                                <div class="english">and you shall see</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֹתוֹ</div>
+                                <div class="transliteration">oso</div>
+                                <div class="english">it</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּזְכַרְתֶּם</div>
+                                <div class="transliteration">uz'chartem</div>
+                                <div class="english">and you shall remember</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כָּל</div>
+                                <div class="transliteration">kol</div>
+                                <div class="english">all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מִצְוֺת</div>
+                                <div class="transliteration">mitzvos</div>
+                                <div class="english">the commandments</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וַעֲשִׂיתֶם</div>
+                                <div class="transliteration">va'asisem</div>
+                                <div class="english">and you shall do</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֹתָם</div>
+                                <div class="transliteration">osam</div>
+                                <div class="english">them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְלֹא</div>
+                                <div class="transliteration">v'lo</div>
+                                <div class="english">and you shall not</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תָתוּרוּ</div>
+                                <div class="transliteration">sasuru</div>
+                                <div class="english">follow</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַחֲרֵי</div>
+                                <div class="transliteration">acharei</div>
+                                <div class="english">after</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְבַבְכֶם</div>
+                                <div class="transliteration">l'vavchem</div>
+                                <div class="english">your heart</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאַחֲרֵי</div>
+                                <div class="transliteration">v'acharei</div>
+                                <div class="english">and after</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עֵינֵיכֶם</div>
+                                <div class="transliteration">eineichem</div>
+                                <div class="english">your eyes</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲשֶׁר</div>
+                                <div class="transliteration">asher</div>
+                                <div class="english">which</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַתֶּם</div>
+                                <div class="transliteration">atem</div>
+                                <div class="english">you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">זֹנִים</div>
+                                <div class="transliteration">zonim</div>
+                                <div class="english">are straying</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">אַחֲרֵיהֶם</div>
+                                <div class="transliteration">achareihem</div>
+                                <div class="english">after them</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְמַעַן</div>
+                                <div class="transliteration">l'ma'an</div>
+                                <div class="english">so that</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">תִּזְכְּרוּ</div>
+                                <div class="transliteration">tiz'k'ru</div>
+                                <div class="english">you may remember</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וַעֲשִׂיתֶם</div>
+                                <div class="transliteration">va'asisem</div>
+                                <div class="english">and do</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כָּל</div>
+                                <div class="transliteration">kol</div>
+                                <div class="english">all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מִצְוֺתַי</div>
+                                <div class="transliteration">mitzvosai</div>
+                                <div class="english">My commandments</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וִהְיִיתֶם</div>
+                                <div class="transliteration">vihyisem</div>
+                                <div class="english">and you shall be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">קְדֹשִׁים</div>
+                                <div class="transliteration">k'doshim</div>
+                                <div class="english">holy</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לֵאלֹקֵיכֶם</div>
+                                <div class="transliteration">l'Eloheichem</div>
+                                <div class="english">to your G-d</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲנִי</div>
+                                <div class="transliteration">ani</div>
+                                <div class="english">I</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵיכֶם</div>
+                                <div class="transliteration">Eloheichem</div>
+                                <div class="english">your G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲשֶׁר</div>
+                                <div class="transliteration">asher</div>
+                                <div class="english">Who</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הוֹצֵאתִי</div>
+                                <div class="transliteration">hotzeisi</div>
+                                <div class="english">brought out</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶתְכֶם</div>
+                                <div class="transliteration">eschem</div>
+                                <div class="english">you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מֵאֶרֶץ</div>
+                                <div class="transliteration">me'eretz</div>
+                                <div class="english">from the land</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מִצְרַיִם</div>
+                                <div class="transliteration">Mitzrayim</div>
+                                <div class="english">of Egypt</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לִהְיוֹת</div>
+                                <div class="transliteration">lihyos</div>
+                                <div class="english">to be</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָכֶם</div>
+                                <div class="transliteration">lachem</div>
+                                <div class="english">for you</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לֵאלֹקִים</div>
+                                <div class="transliteration">l'Elohim</div>
+                                <div class="english">a G-d</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">אֲנִי</div>
+                                <div class="transliteration">ani</div>
+                                <div class="english">I</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵיכֶם</div>
+                                <div class="transliteration">Eloheichem</div>
+                                <div class="english">your G-d</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emes V'Yatziv -->
+                <div class="chapter">
+                    <div class="header-wrapper">
+                        <div class="header-line"></div>
+                        <div class="blessing-header">
+                            <div class="header-text">
+                                <h2>
+                                    <span class="header-square"></span>
+                                    <span class="bold-title">Emes V'Yatziv:</span>
+                                    <span class="description">&nbsp;True and Firm</span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="header-line"></div>
+                    </div>
+                    <div class="instruction">
+                        <span>Blessing After the First Two Paragraphs of Shema</span>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew"><strong>אֱמֶת</strong></div>
+                                <div class="transliteration"><strong>Emes</strong></div>
+                                <div class="english"><strong>True</strong></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְיַצִּיב</div>
+                                <div class="transliteration">v'yatziv</div>
+                                <div class="english">and firm</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנָכוֹן</div>
+                                <div class="transliteration">v'nachon</div>
+                                <div class="english">and established</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְקַיָּם</div>
+                                <div class="transliteration">v'kayam</div>
+                                <div class="english">and enduring</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְיָשָׁר</div>
+                                <div class="transliteration">v'yashar</div>
+                                <div class="english">and upright</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנֶאֱמָן</div>
+                                <div class="transliteration">v'ne'eman</div>
+                                <div class="english">and faithful</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאָהוּב</div>
+                                <div class="transliteration">v'ahuv</div>
+                                <div class="english">and beloved</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְחָבִיב</div>
+                                <div class="transliteration">v'chaviv</div>
+                                <div class="english">and cherished</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנָעִים</div>
+                                <div class="transliteration">v'na'im</div>
+                                <div class="english">and pleasant</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנוֹרָא</div>
+                                <div class="transliteration">v'nora</div>
+                                <div class="english">and awesome</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנִקְדָּשׁ</div>
+                                <div class="transliteration">v'nikdash</div>
+                                <div class="english">and holy</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְנִשְׁבָּח</div>
+                                <div class="transliteration">v'nishbach</div>
+                                <div class="english">and praised</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שְׁמוֹ</div>
+                                <div class="transliteration">sh'mo</div>
+                                <div class="english">His Name</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">שֶׁל</div>
+                                <div class="transliteration">shel</div>
+                                <div class="english">of</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מַלְכֵּנוּ</div>
+                                <div class="transliteration">malkeinu</div>
+                                <div class="english">our King</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּרוּךְ</div>
+                                <div class="transliteration">baruch</div>
+                                <div class="english">blessed</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הוּא</div>
+                                <div class="transliteration">hu</div>
+                                <div class="english">is He</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְיִתְבָּרֵךְ</div>
+                                <div class="transliteration">v'yisbareich</div>
+                                <div class="english">and may He be blessed</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">שְׁמוֹ</div>
+                                <div class="transliteration">sh'mo</div>
+                                <div class="english">His Name</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לָעַד</div>
+                                <div class="transliteration">la'ad</div>
+                                <div class="english">forever</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וּלְנֵצַח</div>
+                                <div class="transliteration">ul'netzach</div>
+                                <div class="english">and for eternity</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נְצָחִים</div>
+                                <div class="transliteration">n'tzachim</div>
+                                <div class="english">of eternities</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְיִתְהַלֵּל</div>
+                                <div class="transliteration">v'yis'haleil</div>
+                                <div class="english">and may He be praised</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">בִּשְׁמוֹ</div>
+                                <div class="transliteration">bish'mo</div>
+                                <div class="english">in His Name</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הַגָּדוֹל</div>
+                                <div class="transliteration">hagadol</div>
+                                <div class="english">the great</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְהַקָּדוֹשׁ</div>
+                                <div class="transliteration">v'hakadosh</div>
+                                <div class="english">and the holy</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּרוּךְ</div>
+                                <div class="transliteration">baruch</div>
+                                <div class="english">Blessed</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַתָּה</div>
+                                <div class="transliteration">atah</div>
+                                <div class="english">are You</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵינוּ</div>
+                                <div class="transliteration">Eloheinu</div>
+                                <div class="english">our G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מֶלֶךְ</div>
+                                <div class="transliteration">melech</div>
+                                <div class="english">King</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָעוֹלָם</div>
+                                <div class="transliteration">ha'olam</div>
+                                <div class="english">of the world</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">צוּר</div>
+                                <div class="transliteration">tzur</div>
+                                <div class="english">Rock</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִשְׂרָאֵל</div>
+                                <div class="transliteration">Yisroel</div>
+                                <div class="english">of Israel</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְגוֹאֲלוֹ</div>
+                                <div class="transliteration">v'go'alo</div>
+                                <div class="english">and its Redeemer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emes V'Emunah -->
+                <div class="chapter">
+                    <div class="header-wrapper">
+                        <div class="header-line"></div>
+                        <div class="blessing-header">
+                            <div class="header-text">
+                                <h2>
+                                    <span class="header-square"></span>
+                                    <span class="bold-title">Emes V'Emunah:</span>
+                                    <span class="description">&nbsp;True and Faithful</span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="header-line"></div>
+                    </div>
+                    <div class="instruction">
+                        <span>Blessing After the Third Paragraph of Shema</span>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew"><strong>אֱמֶת</strong></div>
+                                <div class="transliteration"><strong>Emes</strong></div>
+                                <div class="english"><strong>True</strong></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְאֵמוּנָה</div>
+                                <div class="transliteration">v'emunah</div>
+                                <div class="english">and faithful</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כָּל</div>
+                                <div class="transliteration">kol</div>
+                                <div class="english">all</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">זֹאת</div>
+                                <div class="transliteration">zos</div>
+                                <div class="english">this</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְקַיֶּמֶת</div>
+                                <div class="transliteration">v'kayemes</div>
+                                <div class="english">and established</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עָלֵינוּ</div>
+                                <div class="transliteration">aleinu</div>
+                                <div class="english">upon us</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">כִּי</div>
+                                <div class="transliteration">ki</div>
+                                <div class="english">for</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הוּא</div>
+                                <div class="transliteration">hu</div>
+                                <div class="english">He</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵינוּ</div>
+                                <div class="transliteration">Eloheinu</div>
+                                <div class="english">our G-d</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">וְלֹא</div>
+                                <div class="transliteration">v'lo</div>
+                                <div class="english">and not</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">נַעֲזוֹב</div>
+                                <div class="transliteration">na'azov</div>
+                                <div class="english">will we abandon</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֶת</div>
+                                <div class="transliteration">es</div>
+                                <div class="english">the</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵינוּ</div>
+                                <div class="transliteration">Eloheinu</div>
+                                <div class="english">our G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">לְעוֹלָמִים</div>
+                                <div class="transliteration">l'olamim</div>
+                                <div class="english">forever</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְעַד</div>
+                                <div class="transliteration">v'ad</div>
+                                <div class="english">and until</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עוֹלָם</div>
+                                <div class="transliteration">olam</div>
+                                <div class="english">eternity</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְעַד</div>
+                                <div class="transliteration">v'ad</div>
+                                <div class="english">and until</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עוֹלְמֵי</div>
+                                <div class="transliteration">olmei</div>
+                                <div class="english">the worlds</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">עוֹלָמִים</div>
+                                <div class="transliteration">olamim</div>
+                                <div class="english">of eternities</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verse">
+                        <div class="verse-table">
+                            <div class="phrase-group">
+                                <div class="hebrew">בָּרוּךְ</div>
+                                <div class="transliteration">baruch</div>
+                                <div class="english">Blessed</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אַתָּה</div>
+                                <div class="transliteration">atah</div>
+                                <div class="english">are You</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">ה׳</div>
+                                <div class="transliteration">Adonoy</div>
+                                <div class="english"><span class="small-caps">Hashem</span></div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">אֱלֹקֵינוּ</div>
+                                <div class="transliteration">Eloheinu</div>
+                                <div class="english">our G-d</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">מֶלֶךְ</div>
+                                <div class="transliteration">melech</div>
+                                <div class="english">King</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">הָעוֹלָם</div>
+                                <div class="transliteration">ha'olam</div>
+                                <div class="english">of the world</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">צוּר</div>
+                                <div class="transliteration">tzur</div>
+                                <div class="english">Rock</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">יִשְׂרָאֵל</div>
+                                <div class="transliteration">Yisroel</div>
+                                <div class="english">of Israel</div>
+                            </div>
+                            <div class="phrase-group">
+                                <div class="hebrew">וְגוֹאֲלוֹ</div>
+                                <div class="transliteration">v'go'alo</div>
+                                <div class="english">and its Redeemer</div>
                             </div>
                         </div>
                     </div>
@@ -5538,7 +8081,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 
-</html>
+</html> 
