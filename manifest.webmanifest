@@ -1,0 +1,30 @@
+{
+  "id": "./Siddur.html",
+  "name": "Smart Siddur",
+  "short_name": "Smart Siddur",
+  "start_url": "./Siddur.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101626",
+  "theme_color": "#101626",
+  "icons": [
+    {
+      "src": "icons/icon-192.png?brand=r4",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png?brand=r4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.png?brand=r4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
